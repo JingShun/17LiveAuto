@@ -10,6 +10,7 @@
 */
 javascript: (function () {
   var flag_snack_clicked = false;
+  var loop_sec = 10; /*每隔幾秒執行一次*/
   function finishedLive() {
     let msg = document.querySelector('div[class^=Recommend__Title-sc-]');
     if (msg && msg.textContent == '直播已經結束囉')
@@ -70,6 +71,10 @@ javascript: (function () {
     document.querySelectorAll('div[class^=PokeItem__Wrapper-sc-] div.LinesEllipsis').
       forEach(div => {
         if (div.textContent.includes("直接回戳")) {
+          
+          /*降低頻率*/
+          if (Math.floor(Math.random() * 2) == 0) { console.log("發現被主播戳，降低頻率，晚點再回戳");return;}
+          
           console.log("發現被主播戳，直接回戳");
           div.parentElement.parentElement.click();
         }
@@ -81,6 +86,8 @@ javascript: (function () {
     window.parent.location = 'about:blank';
   }
   function main() {
+    /*降低頻率*/
+    if (Math.floor(Math.random() * 3) == 0) return;
     if (finishedLive()) closeWindow();
     sendSnack();
     backPoke();
@@ -90,7 +97,7 @@ javascript: (function () {
         closeWindow();
 
   };
-  setInterval(main, 5 * 1000);
+  setInterval(main, loop_sec * 1000);
   console.log("設定自動化");
   alert("設定自動化");
   document.querySelector('html').style.cssText = '-webkit-filter:grayscale(100%);';
