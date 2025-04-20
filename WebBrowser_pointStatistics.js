@@ -25,6 +25,8 @@ func_statists = function(element) {
 	}
 	if(usingHistoryElements.length){
 		key = `${date}_${receiver}`;
+		/* 忽略 "訂閱戰隊" */
+		if (type.includes('訂閱戰隊')) return;
 	}
 	/* 統計 */
     if (statistics[key]) {
