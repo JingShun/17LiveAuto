@@ -13,22 +13,22 @@ func_statists = function(element) {
 	if(usingHistoryElements.length)
 		receiver = element.querySelector('div[class*=UsingHistory__Name-sc-]').textContent.trim();
     /* 購買數 */
-    let points = parseInt(element.querySelector('[class^=Point__PointValue-sc-]').textContent.trim(), 10);
-	/* 忽略條件 */
-	let key = '';
-	if(purchaseHistoryElements.length){
-		key = `${date}_${type}`;
-		/* 忽略 "購買戰隊" */
-		if (type.includes('購買戰隊')) return;
-		/* 忽略背包禮物 */
-		if (points === 1) return;
-	}
-	if(usingHistoryElements.length){
-		key = `${date}_${receiver}`;
-		/* 忽略 "訂閱戰隊" */
-		if (type.includes('訂閱戰隊')) return;
-	}
-	/* 統計 */
+    let points = parseInt(element.querySelector('[class^=Point__PointValue-sc-]').textContent.trim().replace(/,/g, ''), 10);
+    /* 忽略條件 */
+    let key = '';
+    if(purchaseHistoryElements.length){
+        key = `${date}_${type}`;
+        /* 忽略 "購買戰隊" */
+        if (type.includes('購買戰隊')) return;
+        /* 忽略背包禮物 */
+        if (points === 1) return;
+    }
+    if(usingHistoryElements.length){
+        key = `${date}_${receiver}`;
+        /* 忽略 "訂閱戰隊" */
+        if (type.includes('訂閱戰隊')) return;
+    }
+    /* 統計 */
     if (statistics[key]) {
         statistics[key] += points;
     } else {
