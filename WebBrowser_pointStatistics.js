@@ -7,7 +7,7 @@ func_statists = function(element) {
     /* 購買日期 */
     let date = element.querySelector('[class^=ColumnDate-sc-]').textContent.trim();
     /* 購買方式 */
-    let type = element.querySelector('[class^=ColumnType-sc-]').textContent.trim();
+    let type = element.querySelector('[class^=ColumnType-sc-]').textContent.replace(/\s*\(.*?\)\s*/g, '').trim();
     /* 接收者 */
     let receiver = '';
     if(usingHistoryElements.length)
