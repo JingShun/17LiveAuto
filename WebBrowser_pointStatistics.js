@@ -8,10 +8,10 @@ func_statists = function(element) {
     let date = element.querySelector('[class^=ColumnDate-sc-]').textContent.trim();
     /* 購買方式 */
     let type = element.querySelector('[class^=ColumnType-sc-]').textContent.trim();
-	/* 接收者 */
-	let receiver = '';
-	if(usingHistoryElements.length)
-		receiver = element.querySelector('div[class*=UsingHistory__Name-sc-]').textContent.trim();
+    /* 接收者 */
+    let receiver = '';
+    if(usingHistoryElements.length)
+        receiver = element.querySelector('div[class*=UsingHistory__Name-sc-]').textContent.replace(/\s*\(.*?\)\s*/g, '').trim();
     /* 購買數 */
     let points = parseInt(element.querySelector('[class^=Point__PointValue-sc-]').textContent.trim().replace(/,/g, ''), 10);
     /* 忽略條件 */
