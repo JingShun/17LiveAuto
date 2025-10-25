@@ -1,4 +1,12 @@
-
+// ==UserScript==
+// @name         17liveAuto
+// @namespace    http://tampermonkey.net/
+// @version      2.2.0
+// @description  防沉迷x自動回戳x自動點心x移除特效
+// @author       jingshun
+// @match        https://17.live/live/*
+// @grant        none
+// ==/UserScript==
 /**
 用途: 17直播網頁版自動點點心與回戳主播
 
@@ -7,6 +15,7 @@
 2.0.0: 自動點開點心櫃、滿十或直播結束自動關閉頁面
 2.1.0: 黑白畫面，降低體驗
 2.1.1: 降低回戳頻率，比較像真人
+2.2.0: 移除特效、登入等無關元件
 
 */
 javascript: (function () {
@@ -82,11 +91,47 @@ javascript: (function () {
       });
 
   };
+  function removeRedundant() {
+    // see. https://gist.github.com/aikatsukamen/48c20781876a5511cd9447690f10a777
+    // 上方工具列
+    // var dom = document.querySelector('div[class*="Nav"]');
+    // if(dom) dom.remove();
+    // 未知
+    // dom = document.querySelector('div[class*="Notifications"]');
+    // if(dom) dom.remove();
+    // 左側主播資訊
+    // dom = document.querySelector('div[class*="Header"]');
+    // if(dom) dom.remove();
+
+    // 特效
+    dom = document.querySelector('div[class^="VideoOverlay"]');
+    if(dom) dom.remove();
+    dom = document.querySelector('div[class^="VideoLoading"]');
+    if(dom) dom.remove();
+    dom = document.querySelector('div[class^="VideoPlayer__"]');
+    if(dom) dom.remove();
+
+    // 禮物
+    while(document.querySelector('div[class*="Gift__Wrapper"]')) {
+      dom = document.querySelector('div[class*="Gift__Wrapper"]');
+      dom.remove();
+    }
+
+    // 點心
+    // dom = document.querySelector('div[class*="Snackbars"]');
+    // if(dom) dom.remove();
+
+    // 登録
+    dom = document.querySelector('form');
+    if(dom) dom.remove();
+  }
   function closeWindow() {
     window.close();
     window.parent.location = 'about:blank';
   }
   function main() {
+    /*移除特效、登入等無關元件*/
+    removeRedundant();
     /*降低頻率*/
     if (Math.floor(Math.random() * 3) == 0) return;
     if (finishedLive()) closeWindow();
