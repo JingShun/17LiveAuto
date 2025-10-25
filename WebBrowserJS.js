@@ -93,7 +93,7 @@ javascript: (function () {
   };
   function removeRedundant() {
     // see. https://gist.github.com/aikatsukamen/48c20781876a5511cd9447690f10a777
-    dom = '';
+    let dom = '';
     // 上方工具列
     // var dom = document.querySelector('div[class*="Nav"]');
     // if(dom) dom.remove();
