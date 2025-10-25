@@ -15,7 +15,7 @@
 2.0.0: 自動點開點心櫃、滿十或直播結束自動關閉頁面
 2.1.0: 黑白畫面，降低體驗
 2.1.1: 降低回戳頻率，比較像真人
-2.2.0: 移除特效、登入等無關元件
+2.2.0: 移除特效等無關元件
 
 */
 javascript: (function () {
@@ -118,20 +118,20 @@ javascript: (function () {
       dom.remove();
     }
 
-    // 點心
+    // 戳?
     // dom = document.querySelector('div[class*="Snackbars"]');
     // if(dom) dom.remove();
 
-    // 登録
-    dom = document.querySelector('form');
-    if(dom) dom.remove();
+    // // 登録+點心
+    // dom = document.querySelector('form');
+    // if(dom) dom.remove();
   }
   function closeWindow() {
     window.close();
     window.parent.location = 'about:blank';
   }
   function main() {
-    /*移除特效、登入等無關元件*/
+    /*移除特效等無關元件*/
     removeRedundant();
     /*降低頻率*/
     if (Math.floor(Math.random() * 3) == 0) return;
