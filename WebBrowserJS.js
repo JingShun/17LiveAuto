@@ -81,10 +81,10 @@ javascript: (function () {
     document.querySelectorAll('div[class^=PokeItem__Wrapper-sc-] div.LinesEllipsis').
       forEach(div => {
         if (div.textContent.includes("直接回戳")) {
-          
+
           /*降低頻率*/
           if (Math.floor(Math.random() * 2) == 0) { console.log("發現被主播戳，降低頻率，晚點再回戳");return;}
-          
+
           console.log("發現被主播戳，直接回戳");
           div.parentElement.parentElement.click();
         }
@@ -93,6 +93,7 @@ javascript: (function () {
   };
   function removeRedundant() {
     // see. https://gist.github.com/aikatsukamen/48c20781876a5511cd9447690f10a777
+    dom = '';
     // 上方工具列
     // var dom = document.querySelector('div[class*="Nav"]');
     // if(dom) dom.remove();
