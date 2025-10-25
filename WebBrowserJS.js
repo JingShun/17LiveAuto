@@ -4,7 +4,7 @@
 // @version      2.2.0
 // @description  防沉迷x自動回戳x自動點心x移除特效
 // @author       jingshun
-// @match        https://17.live/live/*
+// @match        https://17.live/*/live/*
 // @grant        none
 // ==/UserScript==
 /**
